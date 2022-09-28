@@ -2,7 +2,7 @@
 
 Example of a Quarkus microservice
 
-The microservice replicates the functionality of the project [pagopa-reporting-orgs-enrollment](https://github.com/pagopa/pagopa-reporting-orgs-enrollment).
+The microservice replicates the functionalities of the project [pagopa-reporting-orgs-enrollment](https://github.com/pagopa/pagopa-reporting-orgs-enrollment).
 
 - [Api documentation](#api-documentation-📖)
 - [Technology stack](#technology-stack-💻)
@@ -14,7 +14,7 @@ The microservice replicates the functionality of the project [pagopa-reporting-o
 
 ## Api documentation 📖
 
-See the [Openapi here](https://github.com/pagopa/poc-quarkus/openapi/README.md)
+See the [Openapi here](https://github.com/pagopa/poc-quarkus/openapi/openapi.json)
 
 ---
 
