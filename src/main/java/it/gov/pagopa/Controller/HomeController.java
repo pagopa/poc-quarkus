@@ -11,8 +11,6 @@ import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 import it.gov.pagopa.Model.AppInfo;
 
-@Produces(MediaType.APPLICATION_JSON)
-@Consumes(MediaType.APPLICATION_JSON)
 @Path("")
 public class HomeController {
 
