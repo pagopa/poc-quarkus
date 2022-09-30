@@ -11,6 +11,7 @@ import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 import it.gov.pagopa.Model.AppInfo;
 
+@Produces(value = MediaType.APPLICATION_JSON)
 @Path("")
 public class HomeController {
 
@@ -31,7 +32,6 @@ public class HomeController {
                 .version(version)
                 .environment(environment)
                 .build();
-
-        return Response.ok(info.toString()).build();
+        return Response.ok(info).build();
     }
 }
