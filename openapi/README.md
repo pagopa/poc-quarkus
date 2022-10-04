@@ -1,5 +1,5 @@
-#!/bin/bash
+## How to
 
-curl http://localhost:8080/v3/api-docs | python3 -m json.tool > ./openapi.json
-
-# UI mode http://localhost:8080/swagger-ui/index.html
+To generate the openapi.json and swagger.json files:
+1. run the server on `localhost:8080`
+2. run from this directory the script `generate_swagger.sh`
