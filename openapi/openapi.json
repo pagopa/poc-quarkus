@@ -1,26 +1,64 @@
 {
-  "openapi" : "3.0.3",
-  "info" : {
-    "title" : "poc-quarkus API",
-    "version" : "1.0.0-SNAPSHOT"
-  },
-  "servers" : [ {
-    "url" : "http://localhost:8080",
-    "description" : "Auto generated value"
-  }, {
-    "url" : "http://0.0.0.0:8080",
-    "description" : "Auto generated value"
-  } ],
-  "paths" : {
-    "/info" : {
-      "get" : {
-        "tags" : [ "Home Controller" ],
-        "responses" : {
-          "200" : {
-            "description" : "OK"
-          }
+    "openapi": "3.0.3",
+    "info": {
+        "title": "poc-quarkus API",
+        "version": "0.0.1"
+    },
+    "paths": {
+        "/": {
+            "get": {
+                "tags": [
+                    "Home Controller"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/info": {
+            "get": {
+                "tags": [
+                    "Home Controller"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AppInfo"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
         }
-      }
+    },
+    "components": {
+        "schemas": {
+            "AppInfo": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "version": {
+                        "type": "string"
+                    },
+                    "environment": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
     }
-  }
 }

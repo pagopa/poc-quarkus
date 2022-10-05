@@ -28,3 +28,4 @@ hs_err_pid*
 # Repositories
 target/
 .mvn/
+.DS_Store
