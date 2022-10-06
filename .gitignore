@@ -29,3 +29,7 @@ hs_err_pid*
 target/
 .mvn/
 .DS_Store
+
+# Maven wrapper
+mvnw
+mvnw.cmd
