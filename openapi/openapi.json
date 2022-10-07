@@ -1,0 +1,83 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "poc-quarkus API",
+        "version": "0.0.1"
+    },
+    "paths": {
+        "/info": {
+            "get": {
+                "tags": [
+                    "Home Controller"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AppInfo"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/organizations/{organizationFiscalCode}": {
+            "post": {
+                "tags": [
+                    "Enrollments Controller"
+                ],
+                "parameters": [
+                    {
+                        "name": "organizationFiscalCode",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "AppInfo": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "version": {
+                        "type": "string"
+                    },
+                    "environment": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+}
