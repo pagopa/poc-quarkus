@@ -1,8 +1,10 @@
 package it.gov.pagopa.Controller;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.inject.Inject;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -35,14 +37,7 @@ public class EnrollmentsController {
     @Path("/{organizationFiscalCode}")
     @POST
     public Response createOrganization(@PathParam("organizationFiscalCode")String organizationFiscalCode){
-        try{
         enrollmentsService.createOrganization(organizationFiscalCode);
-        } catch (Exception e){
-            if(enrollmentsService.getOrganizations(organizationFiscalCode))
-                throw new AppException("Conflict", 409, "Organization already inserted");
-            else
-                throw new AppException("Generic error", 500, "Internal server error");
-        }
         return Response.status(201).entity(new OrganizationEntity(organizationFiscalCode, LocalDateTime.now().toString())).build();
     }
 }
