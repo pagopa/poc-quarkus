@@ -42,10 +42,19 @@
         ],
         "responses": {
           "201": {
-            "description": "Created"
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/OrganizationEntity"
+            }
           },
-          "400": {
-            "description": "Bad Request"
+          "401": {
+            "description": "Unauthourized"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "500": {
+            "description": "Internal server error"
           }
         },
         "tags": [
@@ -64,6 +73,17 @@
           "type": "string"
         },
         "version": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "OrganizationEntity": {
+      "properties": {
+        "organizationFiscalCode": {
+          "type": "string"
+        },
+        "organizationOnboardingDate": {
           "type": "string"
         }
       },

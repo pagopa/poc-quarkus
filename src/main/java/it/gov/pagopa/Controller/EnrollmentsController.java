@@ -27,8 +27,10 @@ public class EnrollmentsController {
     EnrollmentsService enrollmentsService;
 
     @APIResponses(value = {
-        @APIResponse(responseCode = "201", description = "Created", content = @Content(mediaType = MediaType.APPLICATION_JSON)),
-        @APIResponse(responseCode = "400", description = "Bad Request", content = @Content(mediaType = MediaType.APPLICATION_JSON))
+        @APIResponse(responseCode = "201", description = "Created", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = OrganizationEntity.class))),
+        @APIResponse(responseCode = "409", description = "Conflict", content = @Content(mediaType = MediaType.APPLICATION_JSON)),
+        @APIResponse(responseCode = "401", description = "Unauthourized", content = @Content(mediaType = MediaType.APPLICATION_JSON)),
+        @APIResponse(responseCode = "500", description = "Internal server error", content = @Content(mediaType = MediaType.APPLICATION_JSON))
     })
     @Path("/{organizationFiscalCode}")
     @POST

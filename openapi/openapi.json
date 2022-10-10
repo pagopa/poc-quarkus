@@ -49,11 +49,27 @@
                     "201": {
                         "description": "Created",
                         "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/OrganizationEntity"
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Conflict",
+                        "content": {
                             "application/json": {}
                         }
                     },
-                    "400": {
-                        "description": "Bad Request",
+                    "401": {
+                        "description": "Unauthourized",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
                         "content": {
                             "application/json": {}
                         }
@@ -74,6 +90,17 @@
                         "type": "string"
                     },
                     "environment": {
+                        "type": "string"
+                    }
+                }
+            },
+            "OrganizationEntity": {
+                "type": "object",
+                "properties": {
+                    "organizationFiscalCode": {
+                        "type": "string"
+                    },
+                    "organizationOnboardingDate": {
                         "type": "string"
                     }
                 }
