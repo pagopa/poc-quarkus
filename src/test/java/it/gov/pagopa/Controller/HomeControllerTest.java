@@ -12,7 +12,7 @@ import javax.ws.rs.core.MediaType;
 public class HomeControllerTest {
 
     @Test
-    public void testGetFruits(){
+    public void testHealthCheck(){
         given()
         .when().get("/info")
         .then()
