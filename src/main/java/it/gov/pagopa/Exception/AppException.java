@@ -1,8 +1,6 @@
 package it.gov.pagopa.Exception;
 
-import java.io.Serializable;
-
-public class AppException extends RuntimeException implements Serializable{
+public class AppException extends RuntimeException{
     
     String title;
 
