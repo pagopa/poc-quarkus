@@ -29,6 +29,7 @@ hs_err_pid*
 target/
 .mvn/
 .DS_Store
+src/main/java/it/gov/pagopa/.DS_Store
 
 # Maven wrapper
 mvnw

@@ -29,12 +29,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/openapi",
+					"raw": "{{url}}/openapi.json",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"openapi"
+						"openapi.json"
 					]
 				}
 			},
