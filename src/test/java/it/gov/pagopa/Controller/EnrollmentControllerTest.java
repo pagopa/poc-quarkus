@@ -16,7 +16,7 @@ public class EnrollmentControllerTest {
     public void testCreateOrganization(){
         given()
         .contentType(MediaType.APPLICATION_JSON)
-        .when().post("/organizations/1")
+        .when().post("/organizations/mockOrganizationFiscalCode")
         .then()
         .contentType(MediaType.APPLICATION_JSON)
         .statusCode(201);
