@@ -7,19 +7,10 @@
   "paths": {
     "/info": {
       "get": {
-        "produces": [
-          "application/json"
-        ],
         "parameters": [],
         "responses": {
           "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/AppInfo"
-            }
-          },
-          "400": {
-            "description": "Bad Request"
+            "description": "OK"
           }
         },
         "tags": [
@@ -27,7 +18,104 @@
         ]
       }
     },
+    "/organizations": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Obtained all enrollments.",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/OrganizationModelResponse"
+              },
+              "type": "array"
+            }
+          },
+          "401": {
+            "description": "Wrong or missing function key.",
+            "schema": {}
+          },
+          "500": {
+            "description": "Service unavailable."
+          }
+        },
+        "tags": [
+          "Enrollments Controller"
+        ]
+      }
+    },
     "/organizations/{organizationFiscalCode}": {
+      "delete": {
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "organizationFiscalCode",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Request deleted.",
+            "schema": {
+              "$ref": "#/definitions/OrganizationModelResponse"
+            }
+          },
+          "401": {
+            "description": "Wrong or missing function key.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Not found the creditor institution."
+          },
+          "500": {
+            "description": "Service unavailable."
+          }
+        },
+        "tags": [
+          "Enrollments Controller"
+        ]
+      },
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "organizationFiscalCode",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Obtained single enrollment.",
+            "schema": {
+              "$ref": "#/definitions/OrganizationModelResponse"
+            }
+          },
+          "401": {
+            "description": "Wrong or missing function key.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Not found the enroll service."
+          },
+          "500": {
+            "description": "Service unavailable."
+          }
+        },
+        "tags": [
+          "Enrollments Controller"
+        ]
+      },
       "post": {
         "produces": [
           "application/json"
@@ -44,7 +132,7 @@
           "201": {
             "description": "Created",
             "schema": {
-              "$ref": "#/definitions/OrganizationEntity"
+              "$ref": "#/definitions/OrganizationModelResponse"
             }
           },
           "401": {
@@ -64,27 +152,18 @@
     }
   },
   "definitions": {
-    "AppInfo": {
-      "properties": {
-        "environment": {
-          "type": "string"
-        },
-        "name": {
-          "type": "string"
-        },
-        "version": {
-          "type": "string"
-        }
-      },
-      "type": "object"
+    "LocalDateTime": {
+      "example": "2022-03-10T12:15:50",
+      "format": "date-time",
+      "type": "string"
     },
-    "OrganizationEntity": {
+    "OrganizationModelResponse": {
       "properties": {
         "organizationFiscalCode": {
           "type": "string"
         },
         "organizationOnboardingDate": {
-          "type": "string"
+          "$ref": "#/definitions/LocalDateTime"
         }
       },
       "type": "object"

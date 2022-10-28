@@ -12,17 +12,40 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "OK",
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/organizations": {
+            "get": {
+                "tags": [
+                    "Enrollments Controller"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Obtained all enrollments.",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/AppInfo"
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/OrganizationModelResponse"
+                                    }
                                 }
                             }
                         }
                     },
-                    "400": {
-                        "description": "Bad Request",
+                    "401": {
+                        "description": "Wrong or missing function key.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Service unavailable.",
                         "content": {
                             "application/json": {}
                         }
@@ -31,6 +54,53 @@
             }
         },
         "/organizations/{organizationFiscalCode}": {
+            "get": {
+                "tags": [
+                    "Enrollments Controller"
+                ],
+                "parameters": [
+                    {
+                        "name": "organizationFiscalCode",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Obtained single enrollment.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/OrganizationModelResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Wrong or missing function key.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found the enroll service.",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "500": {
+                        "description": "Service unavailable.",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            },
             "post": {
                 "tags": [
                     "Enrollments Controller"
@@ -51,7 +121,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/OrganizationEntity"
+                                    "$ref": "#/components/schemas/OrganizationModelResponse"
                                 }
                             }
                         }
@@ -75,33 +145,71 @@
                         }
                     }
                 }
+            },
+            "delete": {
+                "tags": [
+                    "Enrollments Controller"
+                ],
+                "parameters": [
+                    {
+                        "name": "organizationFiscalCode",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request deleted.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/OrganizationModelResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Wrong or missing function key.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found the creditor institution.",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "500": {
+                        "description": "Service unavailable.",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
             }
         }
     },
     "components": {
         "schemas": {
-            "AppInfo": {
-                "type": "object",
-                "properties": {
-                    "name": {
-                        "type": "string"
-                    },
-                    "version": {
-                        "type": "string"
-                    },
-                    "environment": {
-                        "type": "string"
-                    }
-                }
+            "LocalDateTime": {
+                "format": "date-time",
+                "type": "string",
+                "example": "2022-03-10T12:15:50"
             },
-            "OrganizationEntity": {
+            "OrganizationModelResponse": {
                 "type": "object",
                 "properties": {
                     "organizationFiscalCode": {
                         "type": "string"
                     },
                     "organizationOnboardingDate": {
-                        "type": "string"
+                        "$ref": "#/components/schemas/LocalDateTime"
                     }
                 }
             }
