@@ -1,0 +1,62 @@
+{
+	"info": {
+		"_postman_id": "18f7a936-e4d9-43f6-8533-ff4a3c2560ba",
+		"name": "poc-quarkusCollection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23368481"
+	},
+	"item": [
+		{
+			"name": "HealthCheck",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/info",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"info"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetOpenapi",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/openapi.json",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"openapi.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createOrganization",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/organizations/mockOrganizationFiscalCode",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"organizations",
+						"mockOrganizationFiscalCode"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

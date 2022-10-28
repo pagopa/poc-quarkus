@@ -5,18 +5,6 @@
         "version": "0.0.1"
     },
     "paths": {
-        "/": {
-            "get": {
-                "tags": [
-                    "Home Controller"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK"
-                    }
-                }
-            }
-        },
         "/info": {
             "get": {
                 "tags": [
@@ -41,6 +29,53 @@
                     }
                 }
             }
+        },
+        "/organizations/{organizationFiscalCode}": {
+            "post": {
+                "tags": [
+                    "Enrollments Controller"
+                ],
+                "parameters": [
+                    {
+                        "name": "organizationFiscalCode",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/OrganizationEntity"
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Conflict",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthourized",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -55,6 +90,17 @@
                         "type": "string"
                     },
                     "environment": {
+                        "type": "string"
+                    }
+                }
+            },
+            "OrganizationEntity": {
+                "type": "object",
+                "properties": {
+                    "organizationFiscalCode": {
+                        "type": "string"
+                    },
+                    "organizationOnboardingDate": {
                         "type": "string"
                     }
                 }

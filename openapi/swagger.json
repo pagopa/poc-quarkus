@@ -5,19 +5,6 @@
     "version": "0.0.1"
   },
   "paths": {
-    "/": {
-      "get": {
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        },
-        "tags": [
-          "Home Controller"
-        ]
-      }
-    },
     "/info": {
       "get": {
         "produces": [
@@ -39,6 +26,41 @@
           "Home Controller"
         ]
       }
+    },
+    "/organizations/{organizationFiscalCode}": {
+      "post": {
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "organizationFiscalCode",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/OrganizationEntity"
+            }
+          },
+          "401": {
+            "description": "Unauthourized"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "tags": [
+          "Enrollments Controller"
+        ]
+      }
     }
   },
   "definitions": {
@@ -51,6 +73,17 @@
           "type": "string"
         },
         "version": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "OrganizationEntity": {
+      "properties": {
+        "organizationFiscalCode": {
+          "type": "string"
+        },
+        "organizationOnboardingDate": {
           "type": "string"
         }
       },
