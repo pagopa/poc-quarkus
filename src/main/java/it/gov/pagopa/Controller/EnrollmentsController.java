@@ -46,7 +46,7 @@ public class EnrollmentsController {
 
     @APIResponses(value = {
         @APIResponse(responseCode = "200", description = "Request deleted.", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(name = "StringResponse", implementation = OrganizationModelResponse.class))),
-        @APIResponse(responseCode = "401", description = "Wrong or missing function key.", content = @Content(schema = @Schema())),
+        @APIResponse(responseCode = "401", description = "Unauthourized.", content = @Content(schema = @Schema())),
         @APIResponse(responseCode = "404", description = "Not found the creditor institution.", content = @Content(mediaType = MediaType.APPLICATION_JSON)),
         @APIResponse(responseCode = "500", description = "Service unavailable.", content = @Content(mediaType = MediaType.APPLICATION_JSON))
     })
@@ -58,7 +58,7 @@ public class EnrollmentsController {
 
     @APIResponses(value = {
         @APIResponse(responseCode = "200", description = "Obtained single enrollment.", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(name = "OrganizationModelResponse", implementation = OrganizationModelResponse.class))),
-        @APIResponse(responseCode = "401", description = "Wrong or missing function key.", content = @Content(schema = @Schema())),
+        @APIResponse(responseCode = "401", description = "Unauthorized.", content = @Content(schema = @Schema())),
         @APIResponse(responseCode = "404", description = "Not found the enroll service.", content = @Content(mediaType = MediaType.APPLICATION_JSON)),
         @APIResponse(responseCode = "500", description = "Service unavailable.", content = @Content(mediaType = MediaType.APPLICATION_JSON))
     })

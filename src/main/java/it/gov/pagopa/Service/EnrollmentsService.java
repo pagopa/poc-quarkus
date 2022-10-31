@@ -30,11 +30,12 @@ public class EnrollmentsService {
     
     @Transactional
     public OrganizationModelResponse createOrganization(String organizationFiscalCode){
+        LocalDateTime date = LocalDateTime.now();
         if(OrganizationEntity.getOrgsByFiscalCode(organizationFiscalCode).isEmpty())
-            new OrganizationEntity(organizationFiscalCode, LocalDateTime.now()).persist();
+            new OrganizationEntity(organizationFiscalCode, date).persist();
         else
             throw new AppException(AppError.ORGANIZATION_DUPLICATED, organizationFiscalCode);
-        return new OrganizationModelResponse(organizationFiscalCode, LocalDateTime.now());
+        return new OrganizationModelResponse(organizationFiscalCode, date);
     }
 
     @Transactional
