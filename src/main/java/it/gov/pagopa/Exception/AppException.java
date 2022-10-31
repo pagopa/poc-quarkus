@@ -1,14 +1,22 @@
 package it.gov.pagopa.Exception;
 
+import javax.validation.constraints.NotNull;
+
+import java.util.Formatter;
+
 public class AppException extends RuntimeException{
     
     String title;
 
     int httpStatus;
 
-    public AppException(String title, int httpStatus, String message){
-        super(message);
-        this.httpStatus = httpStatus;
-        this.title = title;
+    public AppException(@NotNull AppError appError, Object... args) {
+        super(formatDetails(appError, args));
+        this.httpStatus = appError.httpStatus;
+        this.title = appError.title;
+    }
+
+    private static String formatDetails(AppError appError, Object[] args) {
+        return String.format(appError.details, args);
     }
 }
