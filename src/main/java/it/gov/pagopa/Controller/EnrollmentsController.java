@@ -32,9 +32,6 @@ public class EnrollmentsController {
     @Inject 
     EnrollmentsService enrollmentsService;
 
-    @Inject
-    OrganizationMapper organizationMapper; 
-
     @APIResponses(value = {
         @APIResponse(responseCode = "201", description = "Created", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = OrganizationModelResponse.class))),
         @APIResponse(responseCode = "409", description = "Conflict", content = @Content(mediaType = MediaType.APPLICATION_JSON)),
@@ -56,7 +53,7 @@ public class EnrollmentsController {
     @Path("/{organizationFiscalCode}")
     @DELETE
     public Response removeOrganization(@PathParam("organizationFiscalCode")String organizationFiscalCode){
-        return Response.ok("The enrollment to reporting service for the organization " + enrollmentsService.removeOrganization(organizationFiscalCode) + " was successfully removed").build();
+        return Response.ok("The enrollment to reporting service for the organization \"" + enrollmentsService.removeOrganization(organizationFiscalCode) + "\" was successfully removed").build();
     }
 
     @APIResponses(value = {
@@ -68,7 +65,7 @@ public class EnrollmentsController {
     @Path("/{organizationFiscalCode}")
     @GET
     public Response getOrganization(@PathParam("organizationFiscalCode")String organizationFiscalCode){
-        return Response.ok(organizationMapper.convert(enrollmentsService.getOrganization(organizationFiscalCode))).build();
+        return Response.ok(enrollmentsService.getOrganization(organizationFiscalCode)).build();
     }
     
     @APIResponses(value = {
