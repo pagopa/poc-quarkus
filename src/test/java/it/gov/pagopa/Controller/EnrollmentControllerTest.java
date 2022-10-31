@@ -18,7 +18,7 @@ import javax.ws.rs.core.MediaType;
 
 @QuarkusTest
 public class EnrollmentControllerTest {
-
+    
     @InjectMock
     private EnrollmentsService enrollmentsService;
 
@@ -28,7 +28,7 @@ public class EnrollmentControllerTest {
         when(enrollmentsService.createOrganization(anyString())).thenReturn(TestUtil.getMockOrganizationEntity());
         when(enrollmentsService.getOrganizations()).thenReturn(TestUtil.getMockOrganizationEntityList());
     }
-    
+
     @Test
     public void testCreateOrganization(){
         given()
@@ -37,7 +37,7 @@ public class EnrollmentControllerTest {
         .then()
         .contentType(MediaType.APPLICATION_JSON)
         .statusCode(201);
-    } 
+    }
 
     @Test
     public void testGetOrganization(){

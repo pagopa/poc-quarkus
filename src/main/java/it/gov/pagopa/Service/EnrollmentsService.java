@@ -56,6 +56,6 @@ public class EnrollmentsService {
     @Transactional(Transactional.TxType.SUPPORTS)
     public List<OrganizationModelResponse> getOrganizations(){
         List<OrganizationEntity> orgs = OrganizationEntity.listAll();
-        return orgs.stream().map(o -> new OrganizationModelResponse(o.getOrganizationFiscalCode(), o.getOrganizationOnboardingDate())).collect(Collectors.toList());
+        return orgs.stream().map(o -> organizationMapper.convert(o)).collect(Collectors.toList());
     }
 }
