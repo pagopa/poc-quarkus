@@ -29,12 +29,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/openapi.json",
+					"raw": "{{url}}/openapi",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"openapi.json"
+						"openapi"
 					]
 				}
 			},
@@ -53,6 +53,60 @@
 					"path": [
 						"organizations",
 						"mockOrganizationFiscalCode"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getOrganization",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/organizations/mockOrganizationFiscalCode",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"organizations",
+						"mockOrganizationFiscalCode"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "removeOrganization",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/organizations/mockOrganizationFiscalCode",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"organizations",
+						"mockOrganizationFiscalCode"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getOrganizations",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/organizations/",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"organizations",
+						""
 					]
 				}
 			},

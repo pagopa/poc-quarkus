@@ -46,7 +46,7 @@ See the [Openapi here](https://github.com/pagopa/poc-quarkus/openapi/openapi.jso
 
 ## Contributors 👥
 
-Created by PagoPa S.p.A
+Made with ❤️ by PagoPa S.p.A
 
 ### Mainteiners
 
