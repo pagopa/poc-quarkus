@@ -2,8 +2,11 @@ package it.gov.pagopa.Exception;
 
 import javax.validation.constraints.NotNull;
 
+import lombok.Getter;
+
 import java.util.Formatter;
 
+@Getter
 public class AppException extends RuntimeException{
     
     String title;

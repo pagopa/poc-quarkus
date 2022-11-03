@@ -22,6 +22,7 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
 
 import it.gov.pagopa.Model.OrganizationModelResponse;
+import it.gov.pagopa.Model.ProblemJson;
 import it.gov.pagopa.Service.EnrollmentsService;
 import it.gov.pagopa.Mapper.OrganizationMapper;
 
@@ -34,9 +35,9 @@ public class EnrollmentsController {
 
     @APIResponses(value = {
         @APIResponse(responseCode = "201", description = "Created", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = OrganizationModelResponse.class))),
-        @APIResponse(responseCode = "409", description = "Conflict", content = @Content(mediaType = MediaType.APPLICATION_JSON)),
-        @APIResponse(responseCode = "401", description = "Unauthourized", content = @Content(mediaType = MediaType.APPLICATION_JSON)),
-        @APIResponse(responseCode = "500", description = "Internal server error", content = @Content(mediaType = MediaType.APPLICATION_JSON))
+        @APIResponse(responseCode = "401", description = "Unauthorized", content = @Content(mediaType = MediaType.APPLICATION_JSON)),
+        @APIResponse(responseCode = "409", description = "Conflict", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = ProblemJson.class))),
+        @APIResponse(responseCode = "500", description = "Internal server error", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = ProblemJson.class)))
     })
     @Path("/{organizationFiscalCode}")
     @POST
@@ -46,9 +47,9 @@ public class EnrollmentsController {
 
     @APIResponses(value = {
         @APIResponse(responseCode = "200", description = "Request deleted.", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(name = "StringResponse", implementation = OrganizationModelResponse.class))),
-        @APIResponse(responseCode = "401", description = "Unauthourized.", content = @Content(schema = @Schema())),
-        @APIResponse(responseCode = "404", description = "Not found the creditor institution.", content = @Content(mediaType = MediaType.APPLICATION_JSON)),
-        @APIResponse(responseCode = "500", description = "Service unavailable.", content = @Content(mediaType = MediaType.APPLICATION_JSON))
+        @APIResponse(responseCode = "401", description = "Unauthorized.", content = @Content(schema = @Schema())),
+        @APIResponse(responseCode = "404", description = "Not found the creditor institution.", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = ProblemJson.class))),
+        @APIResponse(responseCode = "500", description = "Service unavailable.", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = ProblemJson.class)))
     })
     @Path("/{organizationFiscalCode}")
     @DELETE
@@ -59,8 +60,8 @@ public class EnrollmentsController {
     @APIResponses(value = {
         @APIResponse(responseCode = "200", description = "Obtained single enrollment.", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(name = "OrganizationModelResponse", implementation = OrganizationModelResponse.class))),
         @APIResponse(responseCode = "401", description = "Unauthorized.", content = @Content(schema = @Schema())),
-        @APIResponse(responseCode = "404", description = "Not found the enroll service.", content = @Content(mediaType = MediaType.APPLICATION_JSON)),
-        @APIResponse(responseCode = "500", description = "Service unavailable.", content = @Content(mediaType = MediaType.APPLICATION_JSON))
+        @APIResponse(responseCode = "404", description = "Not found the enroll service.", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = ProblemJson.class))),
+        @APIResponse(responseCode = "500", description = "Service unavailable.", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = ProblemJson.class)))
     })
     @Path("/{organizationFiscalCode}")
     @GET
@@ -71,7 +72,7 @@ public class EnrollmentsController {
     @APIResponses(value = {
         @APIResponse(responseCode = "200", description = "Obtained all enrollments.", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(type = SchemaType.ARRAY, implementation = OrganizationModelResponse.class))),
         @APIResponse(responseCode = "401", description = "Unauthorized.", content = @Content(schema = @Schema())),
-        @APIResponse(responseCode = "500", description = "Service unavailable.", content = @Content(mediaType = MediaType.APPLICATION_JSON))
+        @APIResponse(responseCode = "500", description = "Service unavailable.", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = ProblemJson.class)))
     })
     @GET
     public Response getOrganizations(){
