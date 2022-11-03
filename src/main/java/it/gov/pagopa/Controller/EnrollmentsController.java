@@ -70,7 +70,7 @@ public class EnrollmentsController {
     
     @APIResponses(value = {
         @APIResponse(responseCode = "200", description = "Obtained all enrollments.", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(type = SchemaType.ARRAY, implementation = OrganizationModelResponse.class))),
-        @APIResponse(responseCode = "401", description = "Wrong or missing function key.", content = @Content(schema = @Schema())),
+        @APIResponse(responseCode = "401", description = "Unauthorized.", content = @Content(schema = @Schema())),
         @APIResponse(responseCode = "500", description = "Service unavailable.", content = @Content(mediaType = MediaType.APPLICATION_JSON))
     })
     @GET

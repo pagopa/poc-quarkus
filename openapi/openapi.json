@@ -12,7 +12,20 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "OK"
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AppInfo"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {}
+                        }
                     }
                 }
             }
@@ -37,7 +50,7 @@
                         }
                     },
                     "401": {
-                        "description": "Wrong or missing function key.",
+                        "description": "Unauthorized.",
                         "content": {
                             "application/json": {
                                 "schema": {}
@@ -80,7 +93,7 @@
                         }
                     },
                     "401": {
-                        "description": "Wrong or missing function key.",
+                        "description": "Unauthorized.",
                         "content": {
                             "application/json": {
                                 "schema": {}
@@ -172,7 +185,7 @@
                         }
                     },
                     "401": {
-                        "description": "Wrong or missing function key.",
+                        "description": "Unauthourized.",
                         "content": {
                             "application/json": {
                                 "schema": {}
@@ -197,6 +210,20 @@
     },
     "components": {
         "schemas": {
+            "AppInfo": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "version": {
+                        "type": "string"
+                    },
+                    "environment": {
+                        "type": "string"
+                    }
+                }
+            },
             "LocalDateTime": {
                 "format": "date-time",
                 "type": "string",
