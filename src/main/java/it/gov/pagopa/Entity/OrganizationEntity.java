@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.microsoft.azure.storage.table.TableServiceEntity;
+
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import io.quarkus.logging.Log;
@@ -16,21 +18,25 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @Table(name = "organizations")
-public class OrganizationEntity extends PanacheEntity{
-    
-    @Column(unique = true)
-    private String organizationFiscalCode;
+public class OrganizationEntity extends TableServiceEntity {
 
-    @Column
-    private LocalDateTime organizationOnboardingDate;
+    private String organizationOnboardingDate;
+    public static final String ORGANIZATION_KEY = "organization";
 
-    public static Optional<OrganizationEntity> getOrgsByFiscalCode(String organizationFiscalCode){
-        return find("organizationFiscalCode", organizationFiscalCode).singleResultOptional();
+    public OrganizationEntity(String organizationId, String organizationOnboardingDate) {
+        this.partitionKey = ORGANIZATION_KEY;
+        this.rowKey = organizationId;
+        this.organizationOnboardingDate = organizationOnboardingDate;
+    }
+
+    public OrganizationEntity(String organizationId) {
+        this.partitionKey = ORGANIZATION_KEY;
+        this.rowKey = organizationId;
+        // https://docs.microsoft.com/en-us/dotnet/api/microsoft.azure.cosmos.table.tableentity.etag?view=azure-dotnet#microsoft-azure-cosmos-table-tableentity-etag
+        this.etag = "*";
     }
 }

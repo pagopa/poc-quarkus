@@ -15,7 +15,7 @@ public class TestUtil {
     public static OrganizationModelResponse getMockOrganizationEntity() {
 		return OrganizationModelResponse.builder().
 				organizationFiscalCode(mockOrganizationFiscalCode).
-				organizationOnboardingDate(LocalDateTime.now()).
+				organizationOnboardingDate(LocalDateTime.now().toString()).
 				build();
 	}
 	
@@ -23,15 +23,15 @@ public class TestUtil {
 		ArrayList<OrganizationModelResponse> list = new ArrayList<>();
 		list.add(OrganizationModelResponse.builder().
 				organizationFiscalCode(mockOrganizationFiscalCode+"_1").
-				organizationOnboardingDate(LocalDateTime.now()).
+				organizationOnboardingDate(LocalDateTime.now().toString()).
 				build());
 		list.add(OrganizationModelResponse.builder().
 				organizationFiscalCode(mockOrganizationFiscalCode+"_2").
-				organizationOnboardingDate(LocalDateTime.now()).
+				organizationOnboardingDate(LocalDateTime.now().toString()).
 				build());
 		list.add(OrganizationModelResponse.builder().
 				organizationFiscalCode(mockOrganizationFiscalCode+"_3").
-				organizationOnboardingDate(LocalDateTime.now()).
+				organizationOnboardingDate(LocalDateTime.now().toString()).
 				build());
 		return list;
 	}

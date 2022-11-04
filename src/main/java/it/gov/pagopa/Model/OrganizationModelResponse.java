@@ -15,5 +15,5 @@ public class OrganizationModelResponse {
     
     private String organizationFiscalCode;
 
-    private LocalDateTime organizationOnboardingDate;
+    private String organizationOnboardingDate;
 }
