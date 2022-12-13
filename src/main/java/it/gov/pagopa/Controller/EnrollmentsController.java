@@ -16,6 +16,11 @@ import javax.ws.rs.core.Response;
 
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponses;
+
+import io.quarkus.arc.runtime.BeanContainer.Instance;
+import io.quarkus.logging.Log;
+import io.smallrye.config.SmallRyeConfig;
+
 import org.eclipse.microprofile.openapi.annotations.enums.SchemaType;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
@@ -24,14 +29,16 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
 import it.gov.pagopa.Model.OrganizationModelResponse;
 import it.gov.pagopa.Model.ProblemJson;
 import it.gov.pagopa.Service.EnrollmentsService;
+import it.gov.pagopa.Config.Configs;
 import it.gov.pagopa.Mapper.OrganizationMapper;
 
 @Produces(value = MediaType.APPLICATION_JSON)
 @Path("/organizations")
 public class EnrollmentsController {
 
-    @Inject 
+    @Inject
     EnrollmentsService enrollmentsService;
+
 
     @APIResponses(value = {
         @APIResponse(responseCode = "201", description = "Created", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = OrganizationModelResponse.class))),
@@ -41,9 +48,9 @@ public class EnrollmentsController {
     })
     @Path("/{organizationFiscalCode}")
     @POST
-    public Response createOrganization(@PathParam("organizationFiscalCode")String organizationFiscalCode){
-        return Response.status(201).entity(enrollmentsService.createOrganization(organizationFiscalCode)).build();
-    }
+    public Response createOrganization(String organizationFiscalCode) {
+		return Response.status(201).entity(enrollmentsService.createOrganization(organizationFiscalCode)).build();
+	}
 
     @APIResponses(value = {
         @APIResponse(responseCode = "200", description = "Request deleted.", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(name = "StringResponse", implementation = OrganizationModelResponse.class))),
@@ -54,7 +61,8 @@ public class EnrollmentsController {
     @Path("/{organizationFiscalCode}")
     @DELETE
     public Response removeOrganization(@PathParam("organizationFiscalCode")String organizationFiscalCode){
-        return Response.ok("The enrollment to reporting service for the organization \"" + enrollmentsService.removeOrganization(organizationFiscalCode) + "\" was successfully removed").build();
+        enrollmentsService.removeOrganization(organizationFiscalCode);
+        return Response.ok("The enrollment to reporting service for the organization \"" + organizationFiscalCode + "\" was successfully removed").build();
     }
 
     @APIResponses(value = {
