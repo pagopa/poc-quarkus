@@ -21,6 +21,7 @@ Given('a random id organization', async function () {
 
 Given('a valid enrollment', async function () {
 	idOrg = randomOrg();
+	await removeOrganization(idOrg);
 	// precondition -> creation of an organization to delete
     responseToCheck = await createOrganization(idOrg);
     assert.strictEqual(responseToCheck.status, 201);
@@ -44,9 +45,6 @@ When('the organization {string} enrollment', async function (action) {
     	responseToCheck = await getOrganizations();
     }
 });
-
-
-
 
 // Then
 Then('the organization gets the status code {int}', function (status) {

@@ -1,0 +1,9 @@
+{
+  "environment": [
+    {
+      "env": "local",
+      "orgsEnrollmentHost": "http://localhost:8080/",
+      "numberOfEventsToPreload":"100"
+    }
+  ]
+}
