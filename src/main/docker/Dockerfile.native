@@ -12,9 +12,10 @@
 # Then run the container using:
 #
 # docker run -i --rm -p 8080:8080 quarkus/poc-quarkus
-#
+# docker build -f src/main/docker/Dockerfile.native -t quarkus/poc-quarkus-native:native-aarch64 .
+# docker run --rm -p 8080:8080 quarkus/poc-quarkus-native:native-aarch64
 ###
-FROM registry.access.redhat.com/ubi8/ubi-minimal:8.5
+FROM ghcr.io/graalvm/graalvm-ce:latest
 WORKDIR /work/
 RUN chown 1001 /work \
     && chmod "g+rwX" /work \
@@ -25,3 +26,5 @@ EXPOSE 8080
 USER 1001
 
 CMD ["./application", "-Dquarkus.http.host=0.0.0.0"]
+
+
