@@ -32,7 +32,7 @@ See the [Openapi here](https://github.com/pagopa/poc-quarkus/openapi/openapi.jso
 - Java 11
 - GraalVM 
 ### Run
-- Launch `generate_native_image.sh` from the project folder
+- Launch `generate_native_image_local.sh` from the project folder
 - Execute `docker-compose up` to boot the native application and the database
 ---
 
@@ -43,9 +43,9 @@ Install and run azurite:
 - Install: `docker pull mcr.microsoft.com/azure-storage/azurite`
 - Run: `docker run -p 10000:10000 -p 10001:10001 -p 10002:10002 mcr.microsoft.com/azure-storage/azurite`
 ### Run
-`mvn quarkus:dev`
+`mvn quarkus:dev -Dquarkus.profile=docker`
 ### Testing 🧪
-Select `r` after launching the application in developer mode with the previous command. 
+Select `r` after launching the application in developer mode with the previous command or launch `mvn quarkus:test -Dquarkus.profile=docker`. 
 
 
 ## Contributors 👥
