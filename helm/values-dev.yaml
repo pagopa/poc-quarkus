@@ -60,8 +60,8 @@ microservice-chart:
           type: Utilization # Allowed types are 'Utilization' or 'AverageValue'
           value: "75"
   envConfig:
-    WEBSITE_SITE_NAME: 'pagopa-d-poc-quarkus-service' # required to show cloud role name in application insights
-    ENV: 'azure-d-aks'
+    WEBSITE_SITE_NAME: 'pagopa-poc-quarkus-service' # required to show cloud role name in application insights
+    ENV: 'dev'
     LOGGING_LEVEL: "INFO"
     ORGANIZATIONS_TABLE: 'organizations'
   envSecret:
