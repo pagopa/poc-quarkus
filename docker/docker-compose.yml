@@ -6,7 +6,7 @@ services:
     image: "quarkus/poc-quarkus-jvm:local"
     build:
       dockerfile: Dockerfile.jvm
-      context: ./docker/
+      context: ./
     ports:
       - "8080:8080"
     networks:
