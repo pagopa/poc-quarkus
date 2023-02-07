@@ -102,7 +102,12 @@ stages:
           - script: |
               git checkout $(sourceBranch)
             displayName: Checkout and update branch
-          #TODO add another script part in which I create the executable
+
+          - script: |
+              mvn package \
+              -Pnative -Dquarkus.native.container-build=true \
+              -Dquarkus.native.builder-image=quay.io/quarkus/ubi-quarkus-mandrel-builder-image:22.2-java11
+            displayName: Building native executable
 
           - template: templates/docker-release/template.yaml@pagopaCommons
             parameters:
