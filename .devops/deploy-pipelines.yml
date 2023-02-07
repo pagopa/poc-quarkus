@@ -103,7 +103,7 @@ stages:
               git checkout $(sourceBranch)
             displayName: Checkout and update branch
 
-          - ${{ if(parameters.FORCE_REPLACE_DOCKER_IMAGE) }}:
+          - ${{ if eq(parameters.FORCE_REPLACE_DOCKER_IMAGE, true) }}:
             - script: |
                 mvn package \
                 -Pnative -Dquarkus.native.container-build=true \
