@@ -34,3 +34,7 @@ src/main/java/it/gov/pagopa/.DS_Store
 # Maven wrapper
 mvnw
 mvnw.cmd
+/integration-test/src/node_modules/
+/integration-test/src/yarn.lock
+/.env
+/.java-version

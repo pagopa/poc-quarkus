@@ -3,10 +3,10 @@ version: '3.8'
 services:
   app:
     container_name: 'pagopa-poc-quarkus'
-    image: "quarkus/poc-quarkus-native:local"
+    image: "quarkus/poc-quarkus-jvm:local"
     build:
-      dockerfile: Dockerfile.native
-      context: ./src/main/docker/
+      dockerfile: Dockerfile.jvm
+      context: ./docker/
     ports:
       - "8080:8080"
     networks:
