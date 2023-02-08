@@ -1,7 +1,8 @@
 # example: sh ./run_integration_test.sh <local|dev|uat|prod>
+
 # create containers
 cd ../docker || exit
-sh ./run_docker.sh #"$1"
+sh ./run_docker.sh "$1"
 
 # waiting the containers
 printf 'Waiting for the service'
@@ -20,7 +21,6 @@ done
 echo 'Service Started'
 
 # run integration tests
-pwd
 cd ../integration-test/src || exit
 yarn install
 yarn test

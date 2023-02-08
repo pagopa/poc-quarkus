@@ -3,10 +3,12 @@ version: '3.8'
 services:
   app:
     container_name: 'pagopa-poc-quarkus'
-    image: "quarkus/poc-quarkus-jvm:local"
+    image: ${image}
     build:
-      dockerfile: Dockerfile.jvm
-      context: ./
+      dockerfile: Dockerfile
+      context: ../
+    env_file:
+      - ./config/.env
     ports:
       - "8080:8080"
     networks:
