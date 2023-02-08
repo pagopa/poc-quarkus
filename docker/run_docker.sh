@@ -11,7 +11,9 @@ fi
 
 if [ "$ENV" = "local" ]; then
   containerRegistry="pagopadcommonacr.azurecr.io"
-  image="service-local:latest"
+  pip3 install yq
+  repository=$(yq -r '."microservice-chart".image.repository' ../helm/values-$ENV.yaml)
+  image="${repository}:latest"
   echo "Running local image and dev dependencies"
 else
 
@@ -28,10 +30,6 @@ else
     echo "Error with parameter: use <local|dev|uat|prod>"
     exit 1
   fi
-
-  pip3 install yq
-  repository=$(yq -r '."microservice-chart".image.repository' ../helm/values-$ENV.yaml)
-  image="${repository}:latest"
 fi
 
 
