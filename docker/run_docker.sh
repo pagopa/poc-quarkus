@@ -10,28 +10,24 @@ fi
 
 
 if [ "$ENV" = "local" ]; then
+  ENVREG="dev"
   containerRegistry="pagopadcommonacr.azurecr.io"
-  pip3 install yq
-  repository=$(yq -r '."microservice-chart".image.repository' ../helm/values-$ENV.yaml)
-  image="${repository}:latest"
   echo "Running local image and dev dependencies"
 else
 
   if [ "$ENV" = "dev" ]; then
     containerRegistry="pagopadcommonacr.azurecr.io"
+    ENVREG=$ENV
     echo "Running all dev images"
-  elif [ "$ENV" = "uat" ]; then
-    containerRegistry="pagopaucommonacr.azurecr.io"
-    echo "Running all uat images"
-  elif [ "$ENV" = "prod" ]; then
-    containerRegistry="pagopapcommonacr.azurecr.io"
-    echo "Running all prod images"
   else
-    echo "Error with parameter: use <local|dev|uat|prod>"
+    echo "Error with parameter: use <local|dev>"
     exit 1
   fi
 fi
 
+pip3 install yq
+repository=$(yq -r '."microservice-chart".image.repository' ../helm/values-$ENVREG.yaml)
+image="${repository}:latest"
 
 export containerRegistry=${containerRegistry}
 export image=${image}
