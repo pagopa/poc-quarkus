@@ -144,7 +144,7 @@ stages:
             inputs:
               targetType: 'inline'
               script: |
-                mvn quarkus:build -Dquarkus.profile=docker-native-local
+                mvn clean package -Dquarkus.profile=docker-native-local
                 docker build -f docker/Dockerfile.jvm -t quarkus/poc-quarkus-jvm:local .
                 cd ./integration-test
                 sh run_integration_test.sh local
