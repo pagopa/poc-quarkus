@@ -1,8 +1,4 @@
 # example: sh ./run_integration_test.sh <local|dev|uat|prod>
-if [ "$(pwd)" =~ .*"integration-test" ]; then
-  cd ..
-fi
-
 # create containers
 cd ../docker || exit
 sh ./run_docker.sh #"$1"

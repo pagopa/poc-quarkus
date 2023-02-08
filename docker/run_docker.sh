@@ -1,5 +1,4 @@
-#!/bin/bash
+stack_name=$(cd .. && basename "$PWD")
+docker-compose -p "${stack_name}" up -d --remove-orphans --force-recreate
 
-docker-compose up -d --remove-orphans --force-recreate
-
-printf 'Containers started'
+echo 'Containers started'
