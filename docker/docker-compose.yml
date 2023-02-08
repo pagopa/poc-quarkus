@@ -4,9 +4,6 @@ services:
   app:
     container_name: 'pagopa-poc-quarkus'
     image: ${image}
-    build:
-      dockerfile: Dockerfile
-      context: ../
     env_file:
       - ./config/.env
     ports:
