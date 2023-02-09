@@ -19,9 +19,11 @@ until $(curl --output /dev/null --silent --head --fail http://localhost:8080/inf
     sleep 6
 done
 
+echo 'Service started'
+
 export STORAGE_PRIMARY_CONNECTION_KEY="AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;DefaultEndpointsProtocol=http;BlobEndpoint=http://host.docker.internal:10000/devstoreaccount1;QueueEndpoint=http://host.docker.internal:10001/devstoreaccount1;TableEndpoint=http://host.docker.internal:10002/devstoreaccount1;"
 export ORGANIZATIONS_TABLE=organizations
-echo "HELP " + $ORGANIZATIONS_TABLE
+curl localhost:8080/organizations/
 # run integration tests
 cd ../integration-test/src || exit
 yarn install
