@@ -32,5 +32,7 @@ image="${repository}:latest"
 export containerRegistry=${containerRegistry}
 export image=${image}
 
+echo $ENV
+
 stack_name=$(cd .. && basename "$PWD")
-docker-compose -p "${stack_name}" up -d --remove-orphans --force-recreate
+docker-compose up -d --remove-orphans --force-recreate
