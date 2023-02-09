@@ -35,4 +35,4 @@ export STORAGE_PRIMARY_CONNECTION_KEY="AccountName=devstoreaccount1;AccountKey=E
 export ORGANIZATIONS_TABLE=organizations
 
 stack_name=$(cd .. && basename "$PWD")
-docker-compose -p "${stack_name}" -e up -d --remove-orphans --force-recreate
+docker-compose -p "${stack_name}" up -d --remove-orphans --force-recreate
