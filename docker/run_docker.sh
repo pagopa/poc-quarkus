@@ -31,6 +31,8 @@ image="${repository}:latest"
 
 export containerRegistry=${containerRegistry}
 export image=${image}
+export STORAGE_PRIMARY_CONNECTION_KEY="AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;DefaultEndpointsProtocol=http;BlobEndpoint=http://host.docker.internal:10000/devstoreaccount1;QueueEndpoint=http://host.docker.internal:10001/devstoreaccount1;TableEndpoint=http://host.docker.internal:10002/devstoreaccount1;"
+export ORGANIZATIONS_TABLE=organizations
 
 stack_name=$(cd .. && basename "$PWD")
-docker-compose -p "${stack_name}" -e ORGANIZATIONS_TABLE=organizations up -d --remove-orphans --force-recreate
+docker-compose -p "${stack_name}" -e up -d --remove-orphans --force-recreate
