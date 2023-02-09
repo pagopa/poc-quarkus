@@ -19,7 +19,8 @@ until $(curl --output /dev/null --silent --head --fail http://localhost:8080/inf
     sleep 6
 done
 echo 'Service Started'
-echo "Testing" + $ORGANIZATIONS_TABLE
+echo "Testing" + $ENV
+curl localhost:8080/info
 # run integration tests
 cd ../integration-test/src || exit
 yarn install
