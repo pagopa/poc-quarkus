@@ -2,7 +2,6 @@ const axios = require("axios");
 const fs = require('fs');
 
 const reporting_enrollment_host = process.env.REPORTING_ENROLLMENT_HOST;
-const params = new URLSearchParams([['frameworkType', 'micronaut']]);
 
 function get(url, config) {
     return axios.get(reporting_enrollment_host + url, config)
