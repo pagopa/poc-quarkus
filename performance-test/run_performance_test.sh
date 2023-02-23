@@ -1,5 +1,4 @@
 # sh run_performance_test.sh <local|dev|uat|prod> <load|stress|spike|soak|...> <script-name> <db-name> <subkey>
-#TODO It doesn't work at the moment, it will be modified in the perf pipeline pr
 ENVIRONMENT=$1
 TYPE=$2
 SCRIPT=$3

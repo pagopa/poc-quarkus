@@ -1,17 +1,55 @@
-import http from 'k6/http';
+import { post, get, del } from "./common.js";
 
-export function getOrganization(orgsEnrollmentHost, organizationFiscalCode, params) {
-    return http.get(orgsEnrollmentHost+`organizations/${organizationFiscalCode}`, params)
+function healthCheckInfo(url) {
+    return get(url + `/info`, {
+        params: { frameworkType: "quarkus" },
+        headers: {
+            "Ocp-Apim-Subscription-Key": __ENV.API_SUBSCRIPTION_KEY
+        }
+    })
 }
 
-export function getOrganizations(orgsEnrollmentHost, params) {
-    return http.get(orgsEnrollmentHost+`organizations/`, params)
+function getOrganizations(url) {
+    return get(url + `/organizations`, {
+        params: { frameworkType: "quarkus" },
+        headers: {
+            "Ocp-Apim-Subscription-Key": __ENV.API_SUBSCRIPTION_KEY
+        }
+    })
 }
 
-export function createOrganization(orgsEnrollmentHost, organizationFiscalCode, params) {
-    return http.post(orgsEnrollmentHost+`organizations/${organizationFiscalCode}`, params)
+function getOrganization(url, idOrg) {
+    return get(url + `/organizations/${idOrg}`, {
+        params: { frameworkType: "quarkus" },
+        headers: {
+            "Ocp-Apim-Subscription-Key": __ENV.API_SUBSCRIPTION_KEY
+        }
+    })
 }
 
-export function deleteOrganization(orgsEnrollmentHost, organizationFiscalCode, params) {
-    return http.del(orgsEnrollmentHost+`organizations/${organizationFiscalCode}`, params)
+function createOrganization(url, idOrg) {
+    return post(url + `/organizations/${idOrg}`, {
+        params: { frameworkType: "quarkus" },
+        headers: {
+            'Ocp-Apim-Subscription-Key': __ENV.API_SUBSCRIPTION_KEY
+        },
+    })
+}
+
+function removeOrganization(url, idOrg) {
+    return del(url + `/organizations/${idOrg}`, {
+        params: { frameworkType: "quarkus" },
+        headers: {
+            "Ocp-Apim-Subscription-Key": __ENV.API_SUBSCRIPTION_KEY
+        }
+    })
+}
+
+
+module.exports = {
+	healthCheckInfo,
+	getOrganizations,
+    getOrganization,
+    createOrganization,
+    removeOrganization
 }

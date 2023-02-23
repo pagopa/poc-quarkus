@@ -31,7 +31,7 @@ function precondition(organizationFiscalCode) {
    	let tag = {
    		gpdMethod: "CreateOrganization",
    	};
-   	    const params = {
+   	const params = {
         headers: {
     		'Content-Type': 'application/json'
         },
