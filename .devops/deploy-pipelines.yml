@@ -30,7 +30,7 @@ parameters:
       - False
       - True
   - name: TEST
-    displayName: Run integration/smoke tests
+    displayName: Run integration tests
     type: boolean
     default: true
 
