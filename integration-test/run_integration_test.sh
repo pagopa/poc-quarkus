@@ -21,6 +21,8 @@ done
 
 echo 'Service started'
 curl localhost:8080/info
+echo 'Test\n'
+curl localhost:8080/organizations/
 
 # run integration tests
 cd ../integration-test/src || exit
