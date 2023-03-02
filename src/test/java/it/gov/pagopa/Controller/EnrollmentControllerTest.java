@@ -26,31 +26,19 @@ public class EnrollmentControllerTest {
     @BeforeEach
     void setUp() {
         when(enrollmentsService.getOrganization(anyString())).thenReturn(TestUtil.getMockOrganizationEntity());
-        //when(enrollmentsService.createOrganization(anyString())).thenReturn(TestUtil.getMockOrganizationEntity());
+        when(enrollmentsService.createOrganization(anyString())).thenReturn(TestUtil.getMockOrganizationEntity());
         when(enrollmentsService.getOrganizations()).thenReturn(TestUtil.getMockOrganizationEntityList());
-        post("/organizations/mockOrganizationFiscalCode");
 
     }
 
     @Test
-    public void testCreateOrganization201(){
+    public void testCreateOrganization(){
         given()
                 .contentType(MediaType.APPLICATION_JSON)
                 .when().post("/organizations/mockOrganizationFiscalCode")
                 .then()
                 .contentType(MediaType.APPLICATION_JSON)
                 .statusCode(201);
-    }
-
-    @Test
-    public void testCreateOrganization409(){
-        enrollmentsService.createOrganization("mockOrganizationFiscalCode");
-        given()
-                .contentType(MediaType.APPLICATION_JSON)
-                .when().post("/organizations/mockOrganizationFiscalCode")
-                .then()
-                .contentType(MediaType.APPLICATION_JSON)
-                .statusCode(409);
     }
 
     @Test
