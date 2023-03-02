@@ -11,6 +11,7 @@ import it.gov.pagopa.Service.EnrollmentsService;
 import it.gov.pagopa.Util.TestUtil;
 
 import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.post;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
@@ -25,35 +26,48 @@ public class EnrollmentControllerTest {
     @BeforeEach
     void setUp() {
         when(enrollmentsService.getOrganization(anyString())).thenReturn(TestUtil.getMockOrganizationEntity());
-        when(enrollmentsService.createOrganization(anyString())).thenReturn(TestUtil.getMockOrganizationEntity());
+        //when(enrollmentsService.createOrganization(anyString())).thenReturn(TestUtil.getMockOrganizationEntity());
         when(enrollmentsService.getOrganizations()).thenReturn(TestUtil.getMockOrganizationEntityList());
+        post("/organizations/mockOrganizationFiscalCode");
+
     }
 
     @Test
-    public void testCreateOrganization(){
+    public void testCreateOrganization201(){
         given()
-        .contentType(MediaType.APPLICATION_JSON)
-        .when().post("/organizations/mockOrganizationFiscalCode")
-        .then()
-        .contentType(MediaType.APPLICATION_JSON)
-        .statusCode(201);
+                .contentType(MediaType.APPLICATION_JSON)
+                .when().post("/organizations/mockOrganizationFiscalCode")
+                .then()
+                .contentType(MediaType.APPLICATION_JSON)
+                .statusCode(201);
+    }
+
+    @Test
+    public void testCreateOrganization409(){
+        enrollmentsService.createOrganization("mockOrganizationFiscalCode");
+        given()
+                .contentType(MediaType.APPLICATION_JSON)
+                .when().post("/organizations/mockOrganizationFiscalCode")
+                .then()
+                .contentType(MediaType.APPLICATION_JSON)
+                .statusCode(409);
     }
 
     @Test
     public void testGetOrganization(){
         given()
-        .when().get("/organizations/mockOrganizationFiscalCode")
-        .then()
-        .contentType(MediaType.APPLICATION_JSON)
-        .statusCode(200);
+                .when().get("/organizations/mockOrganizationFiscalCode")
+                .then()
+                .contentType(MediaType.APPLICATION_JSON)
+                .statusCode(200);
     } 
 
     @Test
     public void testGetOrganizations(){
         given()
-        .when().get("/organizations/mockOrganizationFiscalCode")
-        .then()
-        .contentType(MediaType.APPLICATION_JSON)
-        .statusCode(200);
+                .when().get("/organizations/mockOrganizationFiscalCode")
+                .then()
+                .contentType(MediaType.APPLICATION_JSON)
+                .statusCode(200);
     }
 }
