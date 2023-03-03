@@ -2,9 +2,7 @@ package it.gov.pagopa.Controller;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
 
-import io.quarkus.test.Mock;
 import io.quarkus.test.junit.QuarkusTest;
 import io.quarkus.test.junit.mockito.InjectMock;
 import it.gov.pagopa.Service.EnrollmentsService;
@@ -46,7 +44,7 @@ public class EnrollmentControllerTest {
         .then()
         .contentType(MediaType.APPLICATION_JSON)
         .statusCode(200);
-    } 
+    }
 
     @Test
     public void testGetOrganizations(){
