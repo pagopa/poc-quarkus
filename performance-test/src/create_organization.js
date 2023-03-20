@@ -71,7 +71,5 @@ export default function(data) {
 
 	check(response, {"CreateOrganization status is 201": (res) => (res.status === 201)}, tag);
 
-	if (response.status === 201) {
-	    postcondition(mockOrganizationFiscalCode, params);
-    }
+	postcondition(mockOrganizationFiscalCode, params);
 }
