@@ -13,21 +13,21 @@ let service;
 
 // Given
 
-Given('a random id organization', async function () {
-    idOrg = randomOrg();
+Given('an organization with id {string}', async function (id) {
+    idOrg = id;
     // precondition -> deletion possible dirty data
     await removeOrganization(idOrg);
 });
 
 Given('a valid enrollment', async function () {
 	idOrg = randomOrg();
-	await removeOrganization(idOrg);
 	// precondition -> creation of an organization to delete
     responseToCheck = await createOrganization(idOrg);
     assert.strictEqual(responseToCheck.status, 201);
     // save data
     organization = responseToCheck.data;
 });
+
 
 // When
 
@@ -46,8 +46,9 @@ When('the organization {string} enrollment', async function (action) {
     }
 });
 
+
 // Then
+
 Then('the organization gets the status code {int}', function (status) {
     assert.strictEqual(responseToCheck.status, status);
 });
-

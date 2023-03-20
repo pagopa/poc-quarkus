@@ -1,0 +1,5 @@
+FROM ghcr.io/graalvm/graalvm-ce:java11-21.3.0@sha256:d3877ce3bae9538032f02d88fb5ea5019d5686a15dd15615fb4e9c65970c72cc AS build
+RUN gu install native-image
+WORKDIR /project
+VOLUME ["/project"]
+ENTRYPOINT ["native-image"]

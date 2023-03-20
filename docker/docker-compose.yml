@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  app:
+    container_name: 'pagopa-poc-quarkus'
+    image: ${image}
+    env_file:
+      - ./config/.env
+    ports:
+      - "8080:8080"
+    networks:
+      app_net:
+
+  azure-storage:
+    container_name: 'azure-storage-quarkus'
+    image: mcr.microsoft.com/azure-storage/azurite
+    ports:
+      - '10000:10000'
+      - '10001:10001'
+      - '10002:10002'
+    networks:
+      app_net:
+        ipv4_address: 10.30.0.3
+
+networks:
+  app_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.30.0.0/16
+          gateway: 10.30.0.1

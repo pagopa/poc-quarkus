@@ -13,6 +13,7 @@ import com.microsoft.azure.storage.table.TableServiceEntity;
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import io.quarkus.logging.Log;
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,6 +22,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
+@RegisterForReflection
 @Table(name = "organizations")
 public class OrganizationEntity extends TableServiceEntity {
 
