@@ -1,0 +1,48 @@
+{
+  "summaryTrendStats": [
+    "avg",
+    "min",
+    "med",
+    "max",
+    "p(95)",
+    "p(99)",
+    "p(99.99)",
+    "count"
+  ],
+  "stages": [
+    {
+      "duration": "0.5s",
+      "target": 1
+    },
+    {
+      "duration": "0.5s",
+      "target": 1
+    },
+    {
+      "duration": "0s",
+      "target": 0
+    }
+  ],
+  "thresholds": {
+    "http_req_failed": [
+      "rate<0.1"
+    ],
+    "http_req_duration": [
+      "p(99)<3000"
+    ],
+    "http_req_duration{orgsEnrollmentMethod:GetOrganization}": [
+      "p(95)<1000"
+    ],
+    "http_req_duration{orgsEnrollmentMethod:CreateOrganization}": [
+      "p(95)<1000"
+    ],
+    "http_req_duration{orgsEnrollmentMethod:DeleteOrganization}": [
+      "p(95)<1000"
+    ]
+  },
+
+  "setupTimeout": "360s",
+
+  "teardownTimeout": "360s"
+}
+
