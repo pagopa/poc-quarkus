@@ -18,7 +18,7 @@ import javax.ws.rs.core.MediaType;
 
 @QuarkusTest
 public class EnrollmentControllerTest {
-    
+
     @InjectMock
     private EnrollmentsService enrollmentsService;
 
@@ -32,28 +32,28 @@ public class EnrollmentControllerTest {
     @Test
     public void testCreateOrganization(){
         given()
-        .contentType(MediaType.APPLICATION_JSON)
-        .when().post("/organizations/mockOrganizationFiscalCode")
-        .then()
-        .contentType(MediaType.APPLICATION_JSON)
-        .statusCode(201);
+                .contentType(MediaType.APPLICATION_JSON)
+                .when().post("/organizations/mockOrganizationFiscalCode")
+                .then()
+                .contentType(MediaType.APPLICATION_JSON)
+                .statusCode(201);
     }
 
     @Test
     public void testGetOrganization(){
         given()
-        .when().get("/organizations/mockOrganizationFiscalCode")
-        .then()
-        .contentType(MediaType.APPLICATION_JSON)
-        .statusCode(200);
-    } 
+                .when().get("/organizations/mockOrganizationFiscalCode")
+                .then()
+                .contentType(MediaType.APPLICATION_JSON)
+                .statusCode(200);
+    }
 
     @Test
     public void testGetOrganizations(){
         given()
-        .when().get("/organizations/mockOrganizationFiscalCode")
-        .then()
-        .contentType(MediaType.APPLICATION_JSON)
-        .statusCode(200);
+                .when().get("/organizations/mockOrganizationFiscalCode")
+                .then()
+                .contentType(MediaType.APPLICATION_JSON)
+                .statusCode(200);
     }
 }

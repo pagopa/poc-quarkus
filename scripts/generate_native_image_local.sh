@@ -1,7 +1,7 @@
 #!/bin/bash
 
-docker build -f src/main/docker/Dockerfile.graalbase -t graalbase .
+docker build -f dockerOrigin/Dockerfile.graalbase -t graalbase .
 
-mvn package -Pnative -Dquarkus.native.container-build=true -Dquarkus.container-image.build=true -Dquarkus.native.builder-image=graalbase -Dquarkus.profile=docker-native
+mvn package -Pnative -Dquarkus.native.container-build=true -Dquarkus.native.builder-image=graalbase #-Dquarkus.profile=docker-native-local
 
-docker build -f src/main/docker/Dockerfile.native -t quarkus/poc-quarkus-native:local .
+docker build -f dockerOrigin/Dockerfile.native -t quarkus/poc-quarkus-native:local .

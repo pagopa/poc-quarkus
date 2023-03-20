@@ -7,7 +7,7 @@
 #
 # Then, build the image with:
 #
-# docker build -f src/main/docker/Dockerfile.jvm -t quarkus/poc-quarkus-jvm .
+# docker build -f docker/Dockerfile.jvm -t quarkus/poc-quarkus-jvm:local .
 #
 # Then run the container using:
 #
