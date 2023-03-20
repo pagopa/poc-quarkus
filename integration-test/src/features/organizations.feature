@@ -4,7 +4,7 @@ Feature: All about Organizations
     Reporting Enrollment running
 
   Scenario: An organization creates an enrollment
-    Given an organization with id "UNKNOW"
+    Given an organization with id "UNKNOWN"
     When the organization "creates" enrollment
     Then the organization gets the status code 201
 

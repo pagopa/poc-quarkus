@@ -13,16 +13,13 @@ if [ "$ENV" = "local" ]; then
   ENVREG="dev"
   containerRegistry="pagopadcommonacr.azurecr.io"
   echo "Running local image and dev dependencies"
+elif [ "$ENV" = "dev" ]; then
+  containerRegistry="pagopadcommonacr.azurecr.io"
+  ENVREG=$ENV
+  echo "Running all dev images"
 else
-
-  if [ "$ENV" = "dev" ]; then
-    containerRegistry="pagopadcommonacr.azurecr.io"
-    ENVREG=$ENV
-    echo "Running all dev images"
-  else
-    echo "Error with parameter: use <local|dev>"
-    exit 1
-  fi
+  echo "Error with parameter: use <local|dev>"
+  exit 1
 fi
 
 pip3 install yq
