@@ -5,7 +5,7 @@ SCRIPT=$3
 DB_NAME=$4
 API_SUBSCRIPTION_KEY=$5
 
-echo 'Writing on ' + DB_NAME
+echo 'Writing on ' + $DB_NAME
 
 if [ -z "$ENVIRONMENT" ]
 then
