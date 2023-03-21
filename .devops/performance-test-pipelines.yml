@@ -30,5 +30,5 @@ steps:
 
   - script: |
       cd ./performance-test
-      sh ./run_performance_test.sh dev ${{ parameters.TEST_TYPE }} ${{ parameters.SCRIPT }} poc-quarkus-k6 $(API_SUBSCRIPTION_KEY)
+      sh ./run_performance_test.sh dev ${{ parameters.TEST_TYPE }} ${{ parameters.SCRIPT }} pocquarkusk6 $(API_SUBSCRIPTION_KEY)
     displayName: Run k6 ${{ parameters.SCRIPT }} on dev
