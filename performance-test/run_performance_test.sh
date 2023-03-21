@@ -5,8 +5,6 @@ SCRIPT=$3
 DB_NAME=$4
 API_SUBSCRIPTION_KEY=$5
 
-echo 'Writing on ' + $DB_NAME
-
 if [ -z "$ENVIRONMENT" ]
 then
   echo "No env specified: sh run_performance_test.sh <local|dev|uat|prod> <load|stress|spike|soak|...> <script-name> <subkey>"
