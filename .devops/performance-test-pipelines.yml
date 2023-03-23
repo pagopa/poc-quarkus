@@ -12,7 +12,8 @@ parameters:
       - "load"
       - "spike"
       - "stress"
-      - "soak"
+      - "ramping"
+      - "constant"
   - name: "SCRIPT"
     displayName: "Script name"
     type: string
