@@ -19,6 +19,7 @@ parameters:
     type: string
     values:
       - full_load_test
+      - create_organization
 
 variables:
     API_SUBSCRIPTION_KEY: $(DEV_POC_ENROLLMENT_SUB_KEY)
