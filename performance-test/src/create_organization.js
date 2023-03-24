@@ -38,6 +38,5 @@ export default function () {
 
   check(r, {
     'CreateOrganization status is 201': (r) => r.status === 201,
-    });
-  }
+  });
 }
