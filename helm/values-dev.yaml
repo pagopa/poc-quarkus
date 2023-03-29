@@ -42,7 +42,7 @@ microservice-chart:
     allowPrivilegeEscalation: false
   resources:
     requests:
-      memory: "512Mi"
+      memory: "256Mi"
       cpu: "0.25"
     limits:
       memory: "512Mi"
@@ -50,15 +50,9 @@ microservice-chart:
   autoscaling:
     enable: true
     minReplica: 3
-    maxReplica: 10
+    maxReplica: 3
     pollingInterval: 10 # seconds
     cooldownPeriod: 50 # seconds
-    triggers:
-      - type: cpu
-        metadata:
-          # Required
-          type: Utilization # Allowed types are 'Utilization' or 'AverageValue'
-          value: "75"
   envConfig:
     WEBSITE_SITE_NAME: 'pagopa-poc-quarkus-service' # required to show cloud role name in application insights
     ENV: 'dev'
