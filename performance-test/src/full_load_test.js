@@ -32,8 +32,7 @@ export default function () {
 
   var url = `${rootUrl}/organizations/${organization_fiscal_code}${frameworkType}`;
 
-
-  var r = http.post(url, params);
+  var r = http.post(url, "", params);
 
   console.log("CreateOrganization call - organization_fiscal_code = " + organization_fiscal_code + ", Status = " + r.status);
 
@@ -62,7 +61,7 @@ export default function () {
 
       url = `${rootUrl}/organizations/${organization_fiscal_code}${frameworkType}`;
 
-      r = http.del(url, params);
+      r = http.del(url, "", params);
 
       console.log("DeleteOrganization call - organization_fiscal_code = " + organization_fiscal_code + ", Status = " + r.status);
 

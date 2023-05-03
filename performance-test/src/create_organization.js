@@ -1,75 +1,42 @@
 import http from 'k6/http';
 import { check } from 'k6';
 import { SharedArray } from 'k6/data';
+import { randomOrg } from './modules/helpers.js';
 
-import { createOrganization, deleteOrganization } from "./modules/orgsEnrollment_client.js";
-
+//k6 run -o influxdb=http://influxdb:8086/k6 -e BASE_URL=http://localhost:8085 performance-test/src/full_load_test.js
+//k6 run performance-test/src/full_load_test.js
 export let options = JSON.parse(open(__ENV.TEST_TYPE));
 
-// read configuration
-// note: SharedArray can currently only be constructed inside init code
-// according to https://k6.io/docs/javascript-api/k6-data/sharedarray
-const varsArray = new SharedArray('vars', function() {
-	return JSON.parse(open(`./${__ENV.VARS}`)).environment;
+const varsArray = new SharedArray('vars', function () {
+    return JSON.parse(open(`${__ENV.VARS}`)).environment;
 });
+
 // workaround to use shared array (only array should be used)
 const vars = varsArray[0];
-const orgsEnrollmentHost = `${vars.orgsEnrollmentHost}`;
-const numberOfEventsToPreload = `${vars.numberOfEventsToPreload}`;
+const rootUrl = `${vars.host}`;
 
-const accountPrimaryKey = `${__ENV.API_SUBSCRIPTION_KEY}`;
+const params = {
+    headers: {
+        'Content-Type': 'application/json',
+        'Ocp-Apim-Subscription-Key': __ENV.API_SUBSCRIPTION_KEY
+    },
+};
 
-export function setup() {
-}
+const frameworkType = `?frameworkType=quarkus`
 
-function precondition() {
-	// no pre conditions
-}
+export default function () {
 
-function postcondition(organizationFiscalCode) {
+  const organization_fiscal_code = randomOrg(11, "0123456789");
 
-	// Delete the newly created organization.
-	let tag = {
-		gpdMethod: "DeleteOrganization",
-	};
+  // Create new debt position (no validity date).
 
-	const params = {
-   	    headers: {
-   			'Content-Type': 'application/json'
-    	},
-   	};
+  var url = `${rootUrl}/organizations/${organization_fiscal_code}${frameworkType}`;
 
-	const r = deleteOrganization(orgsEnrollmentHost, organizationFiscalCode, params);
+  var r = http.post(url, "", params);
 
-	console.log("Delete organization " + organizationFiscalCode + " " + r.status);
+  console.log("CreateOrganization call - organization_fiscal_code = " + organization_fiscal_code + ", Status = " + r.status);
 
-	check(r, {
-		"DeleteOrganization status is 200": (_r) => r.status === 200,
-	}, tag);
-}
-
-export default function(data) {
-
-
-	// Create an organization
-	let tag = {
-		orgsEnrollmentMethod: "CreateOrganization",
-	};
-
-	const params = {
-		headers: {
-			'Content-Type': 'application/json'
-		},
-	};
-
-    let mockOrganizationFiscalCode = 'mockOrganizationFiscalCode';
-	console.log(orgsEnrollmentHost + 'organization/' + mockOrganizationFiscalCode);
-
-	const response = createOrganization(orgsEnrollmentHost, mockOrganizationFiscalCode, params);
-
-	console.log(`CreateOrganization ... ${response.status}`);
-
-	check(response, {"CreateOrganization status is 201": (res) => (res.status === 201)}, tag);
-
-	postcondition(mockOrganizationFiscalCode, params);
+  check(r, {
+    'CreateOrganization status is 201': (r) => r.status === 201,
+  });
 }
