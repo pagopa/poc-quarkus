@@ -8,7 +8,7 @@ import it.gov.pagopa.Model.OrganizationModelResponse;
 
 @Mapper(componentModel = "cdi")
 public interface OrganizationMapper {
-    @Mapping(target = "organizationFiscalCode", source = "rowKey")
+    @Mapping(target = "organizationFiscalCode", source = "organizationFiscalCode")
     @Mapping(target = "organizationOnboardingDate", source = "organizationOnboardingDate")
     OrganizationModelResponse convert(OrganizationEntity organizationEntity);
 }
