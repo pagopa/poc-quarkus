@@ -63,10 +63,15 @@ microservice-chart:
     WEBSITE_SITE_NAME: 'pagopa-poc-quarkus-service' # required to show cloud role name in application insights
     ENV: 'dev'
     LOGGING_LEVEL: "INFO"
-    ORGANIZATIONS_TABLE: 'organizations'
+    MONGO_USERNAME: "pagopa-d-weu-shared-quarkus-cosmos-account"
+    MONGO_HOST: "pagopa-d-weu-shared-quarkus-cosmos-account.mongo.cosmos.azure.com"
+    MONGO_PORT: 10255
+    MONGO_SSL_ENABLED: true
+    MONGO_DATABASE: "organizations"
   envSecret:
     # required
     STORAGE_PRIMARY_CONNECTION_KEY: "poc-reporting-enrollment-d-sa-connection-string"
+    MONGO_PASSWORD: "mongo-poc-quarkus-password"
     APPLICATIONINSIGHTS_CONNECTION_STRING: 'ai-d-connection-string'
   keyvault:
     name: "pagopa-d-shared-kv"
