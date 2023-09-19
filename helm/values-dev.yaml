@@ -70,7 +70,6 @@ microservice-chart:
     MONGO_DATABASE: "organizations"
   envSecret:
     # required
-    STORAGE_PRIMARY_CONNECTION_KEY: "poc-reporting-enrollment-d-sa-connection-string"
     MONGO_PASSWORD: 'mongo-poc-quarkus-password'
     APPLICATIONINSIGHTS_CONNECTION_STRING: 'ai-d-connection-string'
   keyvault:
