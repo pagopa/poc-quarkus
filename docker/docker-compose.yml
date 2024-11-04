@@ -13,7 +13,7 @@ services:
 
   azure-storage:
     container_name: 'azure-storage-quarkus'
-    image: mcr.microsoft.com/azure-storage/azurite
+    image: mcr.microsoft.com/azure-storage/azurite@sha256:2628ee10a72833cc344b9d194cd8b245543892b307d16cf26a2cf55a15b816af
     ports:
       - '10000:10000'
       - '10001:10001'
