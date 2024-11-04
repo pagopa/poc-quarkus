@@ -1,6 +1,6 @@
 #docker build -f src/main/docker/Dockerfile.graalbase -t graalbase .
 
-FROM ghcr.io/graalvm/graalvm-ce:ol7-java11-22.3.0-b2 AS build
+FROM ghcr.io/graalvm/graalvm-ce:ol7-java11-22.3.0-b2@sha256:49d1383ee58d48a8268ad5db80bd329687155811e9ff9f1af5047756e4a20f71 AS build
 RUN gu install native-image
 WORKDIR /project
 VOLUME ["/project"]
