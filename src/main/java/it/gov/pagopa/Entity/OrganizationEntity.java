@@ -3,42 +3,32 @@ package it.gov.pagopa.Entity;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-import com.microsoft.azure.storage.table.TableServiceEntity;
-
-import io.quarkus.hibernate.orm.panache.PanacheEntity;
-import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
-import io.quarkus.logging.Log;
+import javax.persistence.*;
+import io.quarkus.mongodb.panache.PanacheMongoEntity;
 import io.quarkus.runtime.annotations.RegisterForReflection;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.bson.codecs.pojo.annotations.BsonProperty;
 
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @RegisterForReflection
 @Table(name = "organizations")
-public class OrganizationEntity extends TableServiceEntity {
+public class OrganizationEntity extends PanacheMongoEntity {
 
-    private String organizationOnboardingDate;
-    public static final String ORGANIZATION_KEY = "organization";
+    @BsonProperty("organizationFiscalCode")
+    @Column(unique = true)
+    private String organizationFiscalCode;
 
-    public OrganizationEntity(String organizationId, String organizationOnboardingDate) {
-        this.partitionKey = ORGANIZATION_KEY;
-        this.rowKey = organizationId;
-        this.organizationOnboardingDate = organizationOnboardingDate;
-    }
+    @BsonProperty("organizationOnboardingDate")
+    @Column
+    private LocalDateTime organizationOnboardingDate;
 
-    public OrganizationEntity(String organizationId) {
-        this.partitionKey = ORGANIZATION_KEY;
-        this.rowKey = organizationId;
-        // https://docs.microsoft.com/en-us/dotnet/api/microsoft.azure.cosmos.table.tableentity.etag?view=azure-dotnet#microsoft-azure-cosmos-table-tableentity-etag
-        this.etag = "*";
+    public static Optional<OrganizationEntity> getOrgsByFiscalCode(String organizationFiscalCode){
+        return find("organizationFiscalCode", organizationFiscalCode).firstResultOptional();
     }
 }
